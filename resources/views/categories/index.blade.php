@@ -41,7 +41,10 @@
         </tr>
         @endforeach
 
-    </table>    
+    </table>   
+      <!-- PARA CRIAR A PAGINAÇÃO UTILIZE O PRINCIPAL $categories E NÃO O APELIDO $category. NÃO FUNCIONA SE COLOCAR O APELIDO-->
+   {!! $categories->render() !!}
+   <!-- PARA CRIAR A PAGINAÇÃO -->
 </div>
 
 @endsection

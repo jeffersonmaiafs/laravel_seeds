@@ -20,35 +20,41 @@
             <th>Prince </th>
             <th>Featured </th>
             <th>Recommend </th>
+            <th>Category </th>
             <th>Action    </th>
         </tr>    
 
-        @foreach($products as $products)
+        @foreach($products as $p)
         <tr>
-            <td>{{$products->id}}</td>
-            <td>{{$products->name}}</td>    
-            <td>{{$products->description}}</td>    
-            <td>{{$products->prince}}</td>    
-            <td>{{$products->featured}}</td>    
-            <td>{{$products->recommend}}</td>    
-            
+            <td>{{$p->id}}</td>
+            <td>{{$p->name}}</td>    
+            <td>{{$p->description}}</td>    
+            <td>{{$p->prince}}</td>    
+            <td>{{$p->featured}}</td>    
+            <td>{{$p->recommend}}</td>    
+            <td>{{$p->category->name}}</td>
             <td>
-                <a href="{{ route('products.destroy',['id'=>$products->id]) }}">
+                <a href="{{ route('products.destroy',['id'=>$p->id]) }}">
                     
                     <span class="glyphicon glyphicon-remove-circle" style="color:red; font-size:20px"></span>
                 </a>
                 
                 {{"   |    "}} 
                 
-                <a href="{{ route('products.edit',['id'=>$products->id]) }}">
+                <a href="{{ route('products.edit',['id'=>$p->id]) }}">
                     
                     <span class="glyphicon glyphicon-edit" style="color:#66afe9; font-size:20px"></span>
                 </a>
             </td>
         </tr>
+       
         @endforeach
 
-    </table>    
+    </table>  
+   <!-- PARA CRIAR A PAGINAÇÃO UTILIZE O PRINCIPAL PRODUCTS E NÃO O APELIDO PRODUCT. NÃO FUNCIONA SE COLOCAR O APELIDO-->
+   {!! $products->render() !!}
+   <!-- PARA CRIAR A PAGINAÇÃO -->
+   
 </div>
 
 @endsection

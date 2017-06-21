@@ -16,8 +16,14 @@ class DatabaseSeeder extends Seeder
      $this->call('CategoryTableSeeder'); 
 //        // $this->call(UserTableSeeder::class);
          $this->call('UserTableSeeder'); 
-$this->call('ProductsTableSeeder'); 
-        Model::reguard();
+         
+//se colocar a linha abaixo vai acrescentar vários produtos
+       //$this->call('ProductsTableSeeder'); 
+
+       $this->call('ProductsRelacionadosTableSeeder'); 
+
+         
+         Model::reguard();
         
       
        

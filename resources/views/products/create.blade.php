@@ -12,6 +12,13 @@
     @endif
      
     {!! Form::open(['route'=>'products.store']) !!}
+    
+    <!--SELECT CATEGORIAS-->
+    <div class="form-group">
+        {!! Form::label('category', 'Category:') !!}
+        {!! Form::select('category_id',$categories, null, ['class'=>'form-control']) !!}
+    </div>
+    
 <!--Name Form Input-->
     <div class="form-group">
         {!! Form::label('name', 'Name') !!}

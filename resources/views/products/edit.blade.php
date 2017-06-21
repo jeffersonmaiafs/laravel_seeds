@@ -12,7 +12,14 @@
     @endif
      
     {!! Form::open(['route'=>['products.update', $products->id], 'method'=>'put']) !!}
-<!--Name Form Input-->
+ 
+    <!--SELECT CATEGORIAS-->
+    <div class="form-group">
+        {!! Form::label('category', 'Category:') !!}
+        {!! Form::select('category_id',$categories, $products->category->id, ['class'=>'form-control']) !!}
+    </div>
+    
+    <!--Name Form Input-->
     <div class="form-group">
         {!! Form::label('name', 'Name') !!}
         {!! Form::text('name', $products->name, ['class'=>'form-control']) !!}

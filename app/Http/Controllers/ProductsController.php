@@ -4,6 +4,7 @@ namespace Portfolio\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Portfolio\Products;
+use Portfolio\Category;
 use Portfolio\Http\Requests;
 use Portfolio\Http\Controllers\Controller;
 
@@ -21,15 +22,17 @@ class ProductsController extends Controller
     
     
     public function index(){
-       $products = $this->productsModel->all();
+       $products = $this->productsModel->paginate(6);
        return view('products.index',compact('products'));
     }
     
-    public function create(){
+    /*INJETA O OBJETO CATEGORY AUTOMATICAMENTE*/
+    public function create(Category $category){
     
-        //alterei para o uso de noma da rota
-//        
-        return view('products.create');
+        //so preciso das informações abaixo e nao todos all()
+        $categories = $category->lists('name', 'id');
+        
+        return view('products.create', compact('categories'));
     }
     
     public function store(Requests\ProductsRequest $request)
@@ -45,10 +48,17 @@ class ProductsController extends Controller
         return redirect()->route('products');
     }
     
-    public function edit($id){
+    public function edit($id, Category $category){
+        
+        $categories = $category->lists('name','id');
         
         $products = $this->productsModel->find($id);
-        return view('products.edit',compact('products'));
+        
+//        $products = $this->productsModel->find($id);
+//        return view('products.edit',compact('products'));
+         return view('products.edit', compact('products','categories'));
+    
+        
     }
     public function update(Requests\ProductsRequest $request, $id){
         

@@ -20,7 +20,12 @@ class CategoriesController extends Controller
     
     
     public function index(){
-       $categories = $this->categoryModel->all();
+        
+       /*DESTA FORMA LISTA TUDO*/ 
+       //$categories = $this->categoryModel->all();
+       
+       /*DESTA FORMA LISTA APENAS OS 8 PRIMEIROS*/
+        $categories = $this->categoryModel->paginate(8);
        return view('categories.index',compact('categories'));
     }
     
